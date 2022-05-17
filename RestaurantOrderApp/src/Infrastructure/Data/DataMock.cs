@@ -8,40 +8,33 @@ namespace RestaurantOrderApp.Infrastructure.Data
 {
     public class DishMockData {
         public readonly static IList<Dish> Dishes = new List<Dish>(){
-            new Dish {
+            new Dish( TimeOfDayEnum.MORNING ) {
                 Name = "eggs",
-                Type = new DishType( 1,DishTypeEnum.ENTREE ),
-                Availability = TimeOfDayEnum.MORNING
+                TypeNumber = 1,
             },
-            new Dish {
+            new Dish( TimeOfDayEnum.NIGHT ) {
                 Name = "steak",
-                Type = new DishType( 1,DishTypeEnum.ENTREE ),
-                Availability = TimeOfDayEnum.NIGHT,
+                TypeNumber = 1,
             },
-            new Dish {
+            new Dish( TimeOfDayEnum.MORNING ) {
                 Name = "Toast",
-                Type = new DishType( 2, DishTypeEnum.SIDE ),
-                Availability = TimeOfDayEnum.MORNING
+                TypeNumber = 2,
             },
-            new Dish {
+            new Dish( TimeOfDayEnum.NIGHT ) {
                 Name = "potato",
-                Type = new DishType( 2, DishTypeEnum.SIDE ),
-                Availability = TimeOfDayEnum.NIGHT,
+                TypeNumber = 2,
             },
-            new Dish {
+            new Dish( TimeOfDayEnum.MORNING) {
                 Name = "coffee",
-                Type = new DishType( 3, DishTypeEnum.DRINK ),
-                Availability = TimeOfDayEnum.MORNING
+                TypeNumber = 3,
             },
-            new Dish {
+            new Dish( TimeOfDayEnum.NIGHT ) {
                 Name = "wine",
-                Type = new DishType( 3, DishTypeEnum.DRINK ),
-                Availability = TimeOfDayEnum.NIGHT,
+                TypeNumber = 3,
             },
-            new Dish {
+            new Dish( TimeOfDayEnum.NIGHT ){
                 Name = "cake",
-                Type = new DishType( 4, DishTypeEnum.DESSERT ),
-                Availability = TimeOfDayEnum.NIGHT,
+                TypeNumber = 4,
             }
         };
     }//END class
