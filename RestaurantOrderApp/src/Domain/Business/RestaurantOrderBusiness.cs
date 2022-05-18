@@ -9,7 +9,7 @@ using RestaurantOrderApp.Domain.Interfaces.Business;
 using RestaurantOrderApp.Domain.Interfaces.Repositories;
 
 
-namespace RestaurantOrderApp.Domain.Business.Implementations {
+namespace RestaurantOrderApp.Domain.Business {
     public class RestaurantOrderBusiness : IRestaurantOrderBusiness {
 
         private readonly IDishRepository DishRepository;
@@ -20,7 +20,7 @@ namespace RestaurantOrderApp.Domain.Business.Implementations {
             if( orderParameters.Count <= 1 ) throw new ProcessOrderException( $"Invalid order codification parameters number. " +
                     "At least 2 comma separated parameters are necessary.", null );
 
-            throw new NotImplementedException();
+            return this.CreateOrder( orderParameters );
         }
 
         private RestaurantOrder CreateOrder( IList<string> orderParameters ){
@@ -33,7 +33,8 @@ namespace RestaurantOrderApp.Domain.Business.Implementations {
                 newRestaurantOrder = new RestaurantOrder( timeOfDayEnum );
                 foreach ( var typeNumberParam in orderParameters ){
                     if( this.IsDishTypeNumberParamNotInt( typeNumberParam, out int dishTypeNumber ) )
-                        throw new ArgumentException( $"Invalid dish type number. The value '{typeNumberParam}' can't be converted to int" );
+                        throw new ProcessOrderException( $"Invalid dish type number. The value '{typeNumberParam}'" + 
+                                " can't be converted to int",  newRestaurantOrder );
                     var dish = this.DishRepository.GetByTypeNumberAndTimeOfDay( dishTypeNumber, timeOfDayEnum );
                     newRestaurantOrder.AddDish( dish );
                 }
@@ -42,9 +43,8 @@ namespace RestaurantOrderApp.Domain.Business.Implementations {
             }catch( Exception e ){
                 throw new ProcessOrderException( e.Message, newRestaurantOrder, e );
             }
-            
-            
-        }//END 
+
+        }//END CreateOrder()
 
         private bool IsTimeOfDayNotValid( string timeOfDay, out TimeOfDayEnum timeOfDayEnum ){
             return !Enum.TryParse<TimeOfDayEnum>( timeOfDay, true, out timeOfDayEnum );
