@@ -20,7 +20,7 @@ namespace RestaurantOrderApp.Domain.Models
             if( dish is null ) throw new ArgumentNullException( "A non-existent dish can't be ordered." );
             if( !dish.TimeAvailability.Equals( this.TimeOfDay ) ){
                 throw new ArgumentException( 
-                    $"The dish time availability is '{dish.TimeAvailability.ToString()}' can't be different from Order time of day." );
+                    $"The dish time availability is '{dish.TimeAvailability.ToString()}' can't be different from order time of day." );
             }
             if( this.IsDishAlreadyOrdered( dish ) ){
                 if( !dish.IsMultipleOrderAllowed ) {
@@ -43,6 +43,14 @@ namespace RestaurantOrderApp.Domain.Models
 
         public int GetDishQuantityByTypeNumber( int typeNumber ){
             return this.DishQuantity.GetValueOrDefault( typeNumber, 0 );
+        }
+
+        public IEnumerable<int> GetOrderedDisheTypesNumber(){
+            return this.Dishes.Keys;
+        }
+
+        public IEnumerable<Dish> GetOrderedDishes(){
+            return this.Dishes.Values;
         }
         
     }//END class

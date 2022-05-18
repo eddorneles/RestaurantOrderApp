@@ -5,8 +5,8 @@ using RestaurantOrderApp.Domain.Enums;
 namespace RestaurantOrderApp.Domain.Models
 {
     public class Dish {
-        public string Name { get; set; }
         public int TypeNumber {get;set;}
+        public string Name { get; set; }
         public TimeOfDayEnum TimeAvailability {get;set;}
         public bool IsMultipleOrderAllowed {get;set;}
 

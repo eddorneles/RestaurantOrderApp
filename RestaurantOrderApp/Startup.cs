@@ -12,6 +12,9 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 
+using RestaurantOrderApp.Domain.Interfaces.Business;
+using RestaurantOrderApp.Domain.Business.Implementations;
+
 namespace RestaurantOrderApp
 {
     public class Startup
@@ -32,6 +35,15 @@ namespace RestaurantOrderApp
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "RestaurantOrderApp", Version = "v1" });
             });
+            this.ConfigureDependencyInjection( services );
+        }
+
+        private void ConfigureDependencyInjection( IServiceCollection services ){
+            this.ConfigureBusinessDependencyInjection( services );
+        }
+
+        private void ConfigureBusinessDependencyInjection(  IServiceCollection services ){
+            services.AddScoped<IRestaurantOrderBusiness,RestaurantOrderBusiness>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
