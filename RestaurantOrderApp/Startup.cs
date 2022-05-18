@@ -13,7 +13,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 
 using RestaurantOrderApp.Domain.Interfaces.Business;
-using RestaurantOrderApp.Domain.Business.Implementations;
+using RestaurantOrderApp.Domain.Business;
 
 namespace RestaurantOrderApp
 {
