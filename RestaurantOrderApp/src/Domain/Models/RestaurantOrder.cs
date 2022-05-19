@@ -7,13 +7,20 @@ using RestaurantOrderApp.Domain.Enums;
 namespace RestaurantOrderApp.Domain.Models
 {
     public class RestaurantOrder {
+        public int Number {get;set;}
         private Dictionary<int,Dish> Dishes {get;set;}
         private Dictionary<int,int> DishQuantity {get;set;}
         private TimeOfDayEnum TimeOfDay {get;set;}
         private bool Error {get;set;}
+        
         public bool HasError(){
             return this.Error;
         }
+
+        public TimeOfDayEnum GetTimeOfDay(){
+            return this.TimeOfDay;
+        }
+        
 
         public RestaurantOrder( TimeOfDayEnum timeOfDay ){
             this.Dishes = new Dictionary<int, Dish>();

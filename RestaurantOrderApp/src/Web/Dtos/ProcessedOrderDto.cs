@@ -13,11 +13,6 @@ namespace RestaurantOrderApp.Web.Dtos {
             this.Output = this.BuildOrderOutput( restaurantOrder );
         }
 
-        public ProcessedOrderDto( RestaurantOrder restaurantOrder, bool error ) {
-            this.Output = this.BuildOrderOutput( restaurantOrder );
-
-        }
-
         private string BuildOrderOutput( RestaurantOrder restaurantOrder ){
 
             if( restaurantOrder is null ){
